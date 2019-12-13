@@ -1,0 +1,197 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2019-12-13 14:08:44",
+    "containerVersion": {
+        "path": "accounts/4702314753/containers/12336062/versions/0",
+        "accountId": "4702314753",
+        "containerId": "12336062",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/4702314753/containers/12336062",
+            "accountId": "4702314753",
+            "containerId": "12336062",
+            "name": "HXA",
+            "publicId": "GTM-MDMK4WT",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1576223550170",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/4702314753/containers/12336062/workspaces?apiLink=container"
+        },
+        "tag": [
+            {
+                "accountId": "4702314753",
+                "containerId": "12336062",
+                "tagId": "8",
+                "name": "HXA - Google Analytics",
+                "type": "ua",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "overrideGaSettings",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_PAGEVIEW"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "gaSettings",
+                        "value": "{{HXA - Google Analytics Settings}}"
+                    }
+                ],
+                "fingerprint": "1576223550170",
+                "firingTriggerId": [
+                    "23",
+                    "2147479553"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                }
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "4702314753",
+                "containerId": "12336062",
+                "triggerId": "23",
+                "name": "HXA - All History Changes",
+                "type": "HISTORY_CHANGE",
+                "fingerprint": "1576223550163"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "4702314753",
+                "containerId": "12336062",
+                "variableId": "7",
+                "name": "HXA - Google Analytics ID",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "UA-xxxxxxxx-xx"
+                    }
+                ],
+                "fingerprint": "1562321228279",
+                "parentFolderId": "8",
+                "formatValue": {}
+            },
+            {
+                "accountId": "4702314753",
+                "containerId": "12336062",
+                "variableId": "11",
+                "name": "HXA - Google Analytics Settings",
+                "type": "gas",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "cookieDomain",
+                        "value": "auto"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "doubleClick",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setTrackerName",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "useDebugVersion",
+                        "value": "false"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "fieldsToSet",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "fieldName",
+                                        "value": "page"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "{{HXA - Virtual Page Path}}"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "useHashAutoLink",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "decorateFormsAutoLink",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableLinkId",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableEcommerce",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{HXA - Google Analytics ID}}"
+                    }
+                ],
+                "fingerprint": "1576223550168",
+                "parentFolderId": "8"
+            },
+            {
+                "accountId": "4702314753",
+                "containerId": "12336062",
+                "variableId": "10",
+                "name": "HXA - Virtual Page Path",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function virtualPagePath() {\n    /**\n     * Get the URL parameters\n     * source: https://css-tricks.com/snippets/javascript/get-url-variables/\n     * @param  {String} url The URL\n     * @return {Object}     The URL parameters\n     */\n    var getParams = function (url) {\n        var params = {},\n            parser = document.createElement('a');\n\n        parser.href = url;\n        var query = parser.search.substring(1),\n            vars = query.split('&');\n\n        for (var i = 0; i < vars.length; i++) {\n            var pair = vars[i].split('=');\n            params[pair[0]] = decodeURIComponent(pair[1]);\n        }\n\n        return params;\n    };\n  \n    var pagePath = location.pathname,\n        queryParams = getParams(window.location.href),\n        queryParamsStr = '';\n\n    queryParams = (queryParams ? queryParams : {});\n    if (queryParams && Object.keys(queryParams).length) {\n      for (var key in queryParams) {\n        if (key.indexOf('utm_') === -1) { // Exclude UTM Parameters\n          queryParamsStr += 'QS';\n          queryParamsStr += '/' + key;\n          queryParamsStr += '/' + queryParams[key];\n          queryParamsStr += '/';\n        }\n      }\n\n      if (key.length) {\n        if (pagePath && pagePath !== '' && pagePath[pagePath.length-1] !== '/') {\n          pagePath = pagePath + '/'\n        }\n        pagePath = pagePath + queryParamsStr;\n      }\n    }\n\n    return pagePath;\n}"
+                    }
+                ],
+                "fingerprint": "1576246113319",
+                "formatValue": {}
+            }
+        ],
+        "folder": [
+            {
+                "accountId": "4702314753",
+                "containerId": "12336062",
+                "folderId": "9",
+                "name": "HXA - Direct Feedback",
+                "fingerprint": "1562304056624"
+            },
+            {
+                "accountId": "4702314753",
+                "containerId": "12336062",
+                "folderId": "8",
+                "name": "HXA - SDK",
+                "fingerprint": "1562304020684"
+            }
+        ],
+        "fingerprint": "0",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/4702314753/containers/12336062/versions/0?apiLink=version"
+    }
+}
